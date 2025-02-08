@@ -1,23 +1,67 @@
 direction: right
 
-Server {
-    docker-compose: {
-        docker1: {
+Server: {
+    Nginx: {
+        shape: image
+        icon: https://img.icons8.com/?size=256&id=t2x6DtCn5Zzx&format=png
+    }
+    LoadBalancing: {
+        shape: hexagon
 
+        
+    }
+    BackEnd API Server: {
+        SpringBoot 1: {
+            shape: image
+            icon: https://img.icons8.com/?size=256&id=A3Ulk2RcONKs&format=png
         }
-        docker2: {
-            
+        SpringBoot 2: {
+            shape: image
+            icon: https://img.icons8.com/?size=256&id=A3Ulk2RcONKs&format=png
         }
-        docker3: {
-            
+        SpringBoot 3: {
+            shape: image
+            icon: https://img.icons8.com/?size=256&id=A3Ulk2RcONKs&format=png
         }
-        nginx: {
-
+    }
+    FrontEnd Server: {
+        NextJS: {
+            shape: image
+            icon: https://static-00.iconduck.com/assets.00/next-js-icon-512x512-zuauazrk.png
         }
     }
 
+    Database: {
+        MySQL: {
+            shape: image
+            icon: https://icons.terrastruct.com/dev%2Fmysql.svg
+        }
+        MongoDB: {
+            shape: image
+            icon: https://icons.terrastruct.com/dev%2Fmongodb.svg
+        }
+        Redis: {
+            shape: image
+            icon: https://icons.terrastruct.com/dev%2Fredis.svg
+        }
+    }
+
+    Nginx <-> LoadBalancing
+    LoadBalancing -> BackEnd API Server.SpringBoot 1
+    LoadBalancing -> BackEnd API Server.SpringBoot 2
+    LoadBalancing -> BackEnd API Server.SpringBoot 3
+    Nginx <-> FrontEnd Server.NextJS
+
+    BackEnd API Server <-> Database
     
 }
 
+Client: {
+    Browser: {
+        shape: image
+        icon: https://icons.terrastruct.com/dev%2Fchrome.svg
+    }
+}
 
-Client -- Server
+
+Client.Browser <-> Server.Nginx
